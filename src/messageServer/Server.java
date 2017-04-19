@@ -4,6 +4,7 @@ package messageServer; /**
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
@@ -34,10 +35,10 @@ public class Server extends Thread {
                 //eines Client eingegangen ist. Ist dies der Fall, so wird
                 //die Anforderung akzeptiert
                 Socket client = socket.accept();
-                clients.add(client);
 
                 sleep(1000);
 
+                clients.add(client);
                 /*//Erzeugen eines Puffers
                 byte[] b = new byte[128];
 
@@ -101,6 +102,7 @@ public class Server extends Thread {
                     String message = new String(b);
                     client.getOutputStream().write(nachrichtClient.getBytes());
                     Server.print(client.getInetAddress().getHostName() + ": \"" + message + "\"");
+
                 }
 
             } catch (Exception e) {
